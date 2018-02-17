@@ -1,0 +1,124 @@
+'''Importing the addons that I used for this particular code'''
+import numpy as np
+from math import sqrt
+import matplotlib.pyplot as plt
+
+''' Making a list of the Data that I have'''
+Llci_Control_Dict = {'Day0': [0.642,0.282,0.261,0.833],'Day1': [0.278,0.285,0.298,0.247],'Day2': [1.055,0.813,0.77,0.562],'Day3': [0.519,0.493,0.433,0.333]}
+Llci_D1564_Dict = {'Day0': [0.217,0.227,0.218,0.229], 'Day1': [0.267,0.421,0.243,0.44], 'Day2': [1.373,1.582,1.45,2.753], 'Day3': [0.495,1.118,1.12,1.011]}
+Llci_D1314_Dict = {'Day0': [0.261,0.224,0.279,0.325], 'Day1': [0.405,0.59,0.931,0.628], 'Day2': [1.835,3.059,2.834,2.596],'Day3': [0.577,0.735,1.319,0.653]}
+
+print(Llci_Control_Dict['Day1'],Llci_D1564_Dict['Day1'],Llci_D1314_Dict['Day1'])
+
+''' Control Average Calculations'''
+Control_Day0_Mean = np.mean(Llci_Control_Dict['Day0'])
+Control_Day1_Mean = np.mean(Llci_Control_Dict['Day1'])
+Control_Day2_Mean = np.mean(Llci_Control_Dict['Day2'])
+Control_Day3_Mean = np.mean(Llci_Control_Dict['Day3'])
+
+print(Control_Day0_Mean)
+print(Control_Day1_Mean)
+print(Control_Day2_Mean)
+print(Control_Day3_Mean)
+Control_Mean = np.mean([Control_Day0_Mean, Control_Day1_Mean, Control_Day2_Mean, Control_Day3_Mean])
+print(Control_Mean)
+
+LLCI_Control = [Control_Day0_Mean, Control_Day1_Mean, Control_Day2_Mean, Control_Day3_Mean]
+
+
+''' D1564 Average Calculations '''
+D1564_Day0_Mean = np.mean(Llci_D1564_Dict['Day0'])
+D1564_Day1_Mean = np.mean(Llci_D1564_Dict['Day1'])
+D1564_Day2_Mean = np.mean(Llci_D1564_Dict['Day2'])
+D1564_Day3_Mean = np.mean(Llci_D1564_Dict['Day3'])
+
+print(D1564_Day0_Mean)
+print(D1564_Day1_Mean)
+print(D1564_Day2_Mean)
+print(D1564_Day3_Mean)
+D1564_Mean = np.mean([D1564_Day0_Mean, D1564_Day1_Mean, D1564_Day2_Mean, D1564_Day3_Mean])
+print(D1564_Mean)
+
+LLCI_D1564 = [D1564_Day0_Mean, D1564_Day1_Mean, D1564_Day2_Mean, D1564_Day3_Mean]
+
+''' D1314 Average Calculations '''
+D1314_Day0_Mean = np.mean(Llci_D1314_Dict['Day0'])
+D1314_Day1_Mean = np.mean(Llci_D1314_Dict['Day1'])
+D1314_Day2_Mean = np.mean(Llci_D1314_Dict['Day2'])
+D1314_Day3_Mean = np.mean(Llci_D1314_Dict['Day3'])
+
+print(D1314_Day0_Mean)
+print(D1314_Day1_Mean)
+print(D1314_Day2_Mean)
+print(D1314_Day3_Mean)
+D1314_Mean = np.mean([D1314_Day0_Mean, D1314_Day1_Mean, D1314_Day2_Mean, D1314_Day3_Mean])
+print(D1314_Mean)
+
+LLCI_D1314 = [D1314_Day0_Mean, D1314_Day1_Mean, D1314_Day2_Mean, D1314_Day3_Mean]
+
+def standard_deviation(lst, population=True):
+    '''Calculates the standard deviation for a list of numbers.'''
+    num_items = len(lst)
+    mean = sum(lst) / num_items
+    differences = [x- mean for x in lst]
+    sq_differences = [d ** 2 for d in differences]
+    ssd = sum(sq_differences)
+    
+    if population is True:
+        print('This is POPULATION standard deviation')
+        variance = ssd / num_items
+    else:
+        print('This is SAMPLE standard deviation')
+        variance = ssd/ (num_items - 1)
+    sd = sqrt(variance)
+    return sd
+
+'''Mostly Testing to see that I get the right numbers with the function I devised'''
+print('LLCI Control Day0')
+print(standard_deviation(Llci_Control_Dict['Day0']))
+print('LLCI Control Day1')
+print(standard_deviation(Llci_Control_Dict['Day1']))
+print('LLCI Control Day2')
+print(standard_deviation(Llci_Control_Dict['Day2']))
+print('LLCI Control Day3')
+print(standard_deviation(Llci_Control_Dict['Day3']))
+
+''' LLCI Control Standard Deviation'''
+LLCI_Control_std_Day0 = standard_deviation(Llci_Control_Dict['Day0'])
+LLCI_Control_std_Day1 = standard_deviation(Llci_Control_Dict['Day1'])
+LLCI_Control_std_Day2 = standard_deviation(Llci_Control_Dict['Day2'])
+LLCI_Control_std_Day3 = standard_deviation(Llci_Control_Dict['Day3'])
+std_LLCI_Control = [LLCI_Control_std_Day0, LLCI_Control_std_Day1, LLCI_Control_std_Day2, LLCI_Control_std_Day3 ]
+
+''' LLCI D1564 Standard Deviation'''
+LLCI_D1564_std_Day0 = standard_deviation(Llci_D1564_Dict['Day0'])
+LLCI_D1564_std_Day1 = standard_deviation(Llci_D1564_Dict['Day1'])
+LLCI_D1564_std_Day2 = standard_deviation(Llci_D1564_Dict['Day2'])
+LLCI_D1564_std_Day3 = standard_deviation(Llci_D1564_Dict['Day3'])
+std_LLCI_D1564 = [LLCI_D1564_std_Day0, LLCI_D1564_std_Day1, LLCI_D1564_std_Day2, LLCI_D1564_std_Day3 ]
+
+''' LLCI D1314 Standard Deviation'''
+LLCI_D1314_std_Day0 = standard_deviation(Llci_D1314_Dict['Day0'])
+LLCI_D1314_std_Day1 = standard_deviation(Llci_D1314_Dict['Day1'])
+LLCI_D1314_std_Day2 = standard_deviation(Llci_D1314_Dict['Day2'])
+LLCI_D1314_std_Day3 = standard_deviation(Llci_D1314_Dict['Day3'])
+std_LLCI_D1314 = [LLCI_D1314_std_Day0, LLCI_D1314_std_Day1, LLCI_D1314_std_Day2, LLCI_D1314_std_Day3 ]
+
+
+'''Plotting my data in a scatter plot, a line plot, and adding error bars'''
+y = [LLCI_Control, LLCI_D1564, LLCI_D1314]
+x = ['Day0','Day1','Day2','Day3']
+plt.scatter(x,LLCI_Control, label='LLCI Control')
+plt.scatter(x,LLCI_D1564, label='LLCI D1564')
+plt.scatter(x,LLCI_D1314, label='LLCI D1314')
+plt.plot(x,LLCI_Control)
+plt.plot(x,LLCI_D1564)
+plt.plot(x,LLCI_D1314)
+plt.errorbar(x,LLCI_Control, yerr = std_LLCI_Control, ecolor = 'blue', linestyle='None')
+plt.errorbar(x,LLCI_D1564, yerr = std_LLCI_D1564, ecolor = 'orange', linestyle='None')
+plt.errorbar(x,LLCI_D1314, yerr = std_LLCI_D1314, ecolor = 'green', linestyle='None')
+plt.legend(loc='upper left')
+plt.xlabel('Duration of Experiment (in Days)')
+plt.ylabel('Cell Proliferation (in Wavelengths)')
+plt.title('Proliferation Assay SD & AS')
+plt.show()
